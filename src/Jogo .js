@@ -12,7 +12,7 @@ export default function Jogo(props) {
                 <div className="forca">
                     <img src={forca0} alt="forca0" />
                 </div>
-                <button  data-test="letter" className="botaoStart"onClick={habilitar} >Escolher Palavra</button>
+                <button   className="botaoStart"onClick={habilitar} >Escolher Palavra</button>
             </div>
         </>
     )
