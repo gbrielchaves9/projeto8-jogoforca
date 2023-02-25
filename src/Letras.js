@@ -8,7 +8,7 @@ export default function Letras(props) {
             <div>
                 <div className="geladeira">
                     {alfabeto.map((c) => (
-                        <button onClick={() => comer(c)} disabled={false}>
+                        <button onClick={() => comer(c)} disabled={true} data-test="letter">
                             {c}
                         </button>
                     ))}
