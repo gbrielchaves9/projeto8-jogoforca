@@ -1,7 +1,7 @@
-import alfabeto from "./alfabeto";
+//import alfabeto from "./alfabeto";
 //import palavras from "./palavras";
 import Jogo from "./Jogo ";
-import Letras from "./Letras ";
+import Letras from "./Letras";
 
 export default  function App() {
   return (
@@ -11,5 +11,5 @@ export default  function App() {
        
 
     </>
-  );
+  )
 }
