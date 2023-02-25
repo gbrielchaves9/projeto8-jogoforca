@@ -7,9 +7,14 @@ export default function Letras(props) {
         <>
             <div>
                 <div className="geladeira">
-                    {alfabeto.map((c) => (
-                        <button onClick={() => comer(c)} disabled={true} data-test="letter">
-                            {c}
+                    {props.letrasHabilitadas.map((item) => (
+                        <button
+                            key={item.letra}
+                            onClick={() => comer(item.letra)}
+                            disabled={!item.habilitado}
+                            data-test="letter"
+                        >
+                            {item.letra}
                         </button>
                     ))}
                 </div>
