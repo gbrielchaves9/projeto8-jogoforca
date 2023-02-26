@@ -20,6 +20,9 @@ export default function App() {
 
   function onLetraClick(letra) {
     setLetrasHabilitadas((prev) => prev.filter((l) => l !== letra));
+    if (!palavraOculta.includes(letra)) {
+      setTentativas((prev) => prev + 1);
+    }
   }
 
   function getPalavraMostrada() {
@@ -38,7 +41,12 @@ export default function App() {
 
   return (
     <>
-      <Jogo habilitar={habilitar} tentativas={tentativas} getPalavraMostrada={getPalavraMostrada} escolherPalavra={escolherPalavra} />
+      <Jogo
+        habilitar={habilitar}
+        tentativas={tentativas}
+        getPalavraMostrada={getPalavraMostrada}
+        escolherPalavra={escolherPalavra}
+      />
       <Letras letrasHabilitadas={letrasHabilitadas} onLetraClick={onLetraClick} />
     </>
   );

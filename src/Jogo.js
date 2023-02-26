@@ -16,7 +16,7 @@ export default function Jogo(props) {
   return (
     <div className="Jogo">
       <div className="forca">
-        <img src={forcaAtual} alt={`forca${tentativas}`} />
+        {tentativas < forcaImgs.length ? <img src={forcaAtual} alt={`forca${tentativas}`} /> : <h2>Game Over</h2>}
       </div>
       {!habilitar && <button className="botaoStart" onClick={escolherPalavra}>Escolher Palavra</button>}
       {habilitar &&
