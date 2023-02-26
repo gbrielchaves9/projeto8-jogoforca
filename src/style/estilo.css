@@ -56,3 +56,17 @@ button {
     border: 1px solid #7AA7C7;
     background: #39739D;
   }
+
+
+.palavra{
+    background-color: aqua;
+    display: flex;
+    margin-top: 400px;
+    height: 68px;
+width: 308px;
+font-size: 50px;
+font-weight: 700; 
+font-size: 50px;
+font-weight: 700;
+letter-spacing: 7px;
+}

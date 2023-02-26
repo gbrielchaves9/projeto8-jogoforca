@@ -10,12 +10,14 @@ export default function App() {
     alfabeto.map((letra) => ({ letra, habilitado: false }))
   );
   const [tentativas, setTentativas] = useState(0);
+  const [palavraOculta, setPalavraOculta] = useState([]);
 
   function habilitar() {
     setHabilitarBotao(!habilitarBotao);
     setLetrasHabilitadas(
       letrasHabilitadas.map((letra) => ({ ...letra, habilitado: true }))
     );
+    setPalavraOculta(palavraAleatoria().arrayPalavra);
   }
 
   function incrementarTentativas() {
@@ -29,15 +31,9 @@ export default function App() {
     return { palavra, arrayPalavra };
   }
 
-
-
-
   return (
     <>
-      <Jogo
-        habilitar={habilitar}
-        tentativas={tentativas}
-      />
+        <Jogo habilitar={habilitar} tentativas={tentativas} palavraOculta={palavraOculta} />
       <Letras letrasHabilitadas={letrasHabilitadas} incrementarTentativas={incrementarTentativas} />
     </>
   );

@@ -8,16 +8,21 @@ import forca5 from "./assets/forca5.png";
 import forca6 from "./assets/forca6.png";
 
 export default function Jogo(props) {
-  const { habilitar, tentativas } = props;
-  const forcas = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
-  const forcaAtual = forcas[tentativas];
+    const { habilitar, tentativas, palavraOculta } = props;
+    const forcas = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
+    const forcaAtual = forcas[tentativas];
 
-  return (
-    <div className="Jogo">
-      <div className="forca">
-        <img src={forcaAtual} alt={`forca${tentativas}`} />
-      </div>
-      <button className="botaoStart" onClick={habilitar}>Escolher Palavra</button>
-    </div>
-  );
+    return (
+        <div className="Jogo">
+            <div className="forca">
+                <img src={forcaAtual} alt={`forca${tentativas}`} />
+            </div>
+            <button className="botaoStart" onClick={habilitar}>Escolher Palavra</button>
+            <div className="palavra">
+                {palavraOculta.map((letra, index) => (
+                    <span key={index}>{letra} </span>
+                ))}
+            </div>
+        </div>
+    );
 }
