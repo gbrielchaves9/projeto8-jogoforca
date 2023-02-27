@@ -5,50 +5,53 @@ import Jogo from "./Jogo";
 import Letras from "./Letras";
 
 export default function App() {
- const [habilitar, setHabilitar] = useState([]);
- const [tentativas, setTentativas] = useState(0);
- const [letrasHabilitadas, setLetrasHabilitadas] = useState(alfabeto);
-  const [palavraOculta, setPalavraOculta] = useState([]);
-  //const [jogoComecou, setJogoComecou] = useState(false);
+  const [habilitar, setHabilitar] = useState([]);
+  const [tentativas, setTentativas] = useState(0);
+  const [letrasHabilitadas, setLetrasHabilitadas] = useState(alfabeto);
+  const [palavraOculta, setPalavraOculta] = useState("");
+  const [acertos, setAcertos] = useState(0);
+  const [erros, setErros] = useState(0);
 
- /* function escolherPalavra() {
-    setLetrasHabilitadas([])
-    const indice = Math.floor(Math.random() * palavras.length);
-  setPalavraOculta(palavras[indice]);
-  }
-  function getPalavraMostrada() {
-    if (!habilitar) return "";
-    return palavraOculta
-      .split("")
-      .map((letra) => (letrasHabilitadas.includes(letra) ? "_" : letra))
-      .join("");
-  }
-  */
   function escolherPalavra() {
-    const indice = Math.floor(Math.random() * palavras.length)
-    const palavra = palavras[indice]
-    const palavraOculta= palavra.split("")
-  //  setPalavraOculta(palavraOculta)
-    let getPalavraMostrada = []
-    palavraOculta.forEach(() => getPalavraMostrada.push(" _"))
-    setHabilitar(getPalavraMostrada)
+    setAcertos(0);
+    setErros(0);
+    const indice = Math.floor(Math.random() * palavras.length);
+    const palavra = palavras[indice];
+    setPalavraOculta(palavra);
+    let getPalavraMostrada = [];
+    palavra.split("").forEach(() => getPalavraMostrada.push("_"));
+    setHabilitar(getPalavraMostrada);
+    setLetrasHabilitadas([])
   }
 
- 
+  function onLetraClick(letra) {
+    if (erros >= 6) {
+      return;
+    }
+    if (!palavraOculta.includes(letra)) {
+      setErros(erros + 1);
+      if (erros === 4) {
+        setHabilitar(palavraOculta);
+      }
+    } else {
+      const novosHabilitar = palavraOculta
+        .split("")
+        .map((letraDaPalavra, index) =>
+          letraDaPalavra === letra ? letra : habilitar[index]
+        );
+      setHabilitar(novosHabilitar);
+      setAcertos(acertos + 1);
+    }
+  }
+
   return (
     <>
       <Jogo
-       // habilitar={habilitar}
-       tentativas={tentativas}
+        tentativas={tentativas}
         habilitar={habilitar}
         escolherPalavra={escolherPalavra}
-       // palavraOculta={palavraOculta}
       />
-      <Letras
-       letrasHabilitadas={letrasHabilitadas}
-       // onLetraClick={onLetraClick}
-      //  jogoComecou={jogoComecou}
-      />
+      <Letras letrasHabilitadas={letrasHabilitadas} onLetraClick={onLetraClick} />
     </>
   );
 }

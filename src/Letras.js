@@ -1,7 +1,7 @@
 //import React, { useState } from 'react';
 
 export default function Letras(props) {
-  const { letrasHabilitadas} = props;
+  const { letrasHabilitadas,onLetraClick} = props;
 
 
   const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -15,7 +15,7 @@ export default function Letras(props) {
           <button data-test="letter"
             key={letra}
             disabled={letrasHabilitadas.includes(letra) }
-            onClick={() => (letra)}
+            onClick={() => onLetraClick(letra)}
           >
             {letra}
           </button>
