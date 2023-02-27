@@ -16,12 +16,14 @@ export default function Jogo(props) {
   return (
     <div className="Jogo">
       <div className="forca">
-        {tentativas < forcaImgs.length ? <img src={forcaAtual} alt={`forca${tentativas}`} /> : <h2>Game Over</h2>}
+        <img src={forcaAtual} data-test="game-image" alt={`forca${tentativas}`} />
       </div>
-      {!habilitar && <button className="botaoStart" onClick={escolherPalavra}>Escolher Palavra</button>}
+      <button className="botaoStart" data-test="choose-word" onClick={escolherPalavra}>Escolher Palavra</button>
       {habilitar &&
         <div className="palavra">
-          <h2>{getPalavraMostrada()}</h2>
+          <h2>
+            {getPalavraMostrada().includes("_") ? getPalavraMostrada() : `A palavra era: ${getPalavraMostrada()}`}
+          </h2>
         </div>
       }
     </div>

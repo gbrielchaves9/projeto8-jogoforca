@@ -9,6 +9,7 @@ export default function App() {
   const [tentativas, setTentativas] = useState(0);
   const [letrasHabilitadas, setLetrasHabilitadas] = useState(alfabeto);
   const [palavraOculta, setPalavraOculta] = useState("");
+  const [jogoComecou, setJogoComecou] = useState(false);
 
   function escolherPalavra() {
     const indice = Math.floor(Math.random() * palavras.length);
@@ -16,6 +17,7 @@ export default function App() {
     setLetrasHabilitadas(alfabeto);
     setTentativas(0);
     setHabilitar(true);
+    setJogoComecou(true);
   }
 
   function onLetraClick(letra) {
@@ -47,7 +49,11 @@ export default function App() {
         getPalavraMostrada={getPalavraMostrada}
         escolherPalavra={escolherPalavra}
       />
-      <Letras letrasHabilitadas={letrasHabilitadas} onLetraClick={onLetraClick} />
+      <Letras
+        letrasHabilitadas={letrasHabilitadas}
+        onLetraClick={onLetraClick}
+        jogoComecou={jogoComecou}
+      />
     </>
   );
 }
