@@ -11,7 +11,7 @@ export default function App() {
   const [palavraOculta, setPalavraOculta] = useState([]);
   //const [jogoComecou, setJogoComecou] = useState(false);
 
-  function escolherPalavra() {
+ /* function escolherPalavra() {
     setLetrasHabilitadas([])
     const indice = Math.floor(Math.random() * palavras.length);
   setPalavraOculta(palavras[indice]);
@@ -23,7 +23,16 @@ export default function App() {
       .map((letra) => (letrasHabilitadas.includes(letra) ? "_" : letra))
       .join("");
   }
-  
+  */
+  function escolherPalavra() {
+    const indice = Math.floor(Math.random() * palavras.length)
+    const palavra = palavras[indice]
+    const palavraOculta= palavra.split("")
+  //  setPalavraOculta(palavraOculta)
+    let getPalavraMostrada = []
+    palavraOculta.forEach(() => getPalavraMostrada.push(" _"))
+    setHabilitar(getPalavraMostrada)
+  }
 
  
   return (
@@ -31,8 +40,9 @@ export default function App() {
       <Jogo
        // habilitar={habilitar}
        tentativas={tentativas}
-        //getPalavraMostrada={getPalavraMostrada}
+        habilitar={habilitar}
         escolherPalavra={escolherPalavra}
+       // palavraOculta={palavraOculta}
       />
       <Letras
        letrasHabilitadas={letrasHabilitadas}
