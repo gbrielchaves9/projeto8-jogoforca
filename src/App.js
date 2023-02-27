@@ -5,54 +5,39 @@ import Jogo from "./Jogo";
 import Letras from "./Letras";
 
 export default function App() {
-  const [habilitar, setHabilitar] = useState(false);
-  const [tentativas, setTentativas] = useState(0);
-  const [letrasHabilitadas, setLetrasHabilitadas] = useState(alfabeto);
-  const [palavraOculta, setPalavraOculta] = useState("");
-  const [jogoComecou, setJogoComecou] = useState(false);
+ const [habilitar, setHabilitar] = useState([]);
+ const [tentativas, setTentativas] = useState(0);
+ const [letrasHabilitadas, setLetrasHabilitadas] = useState(alfabeto);
+  const [palavraOculta, setPalavraOculta] = useState([]);
+  //const [jogoComecou, setJogoComecou] = useState(false);
 
   function escolherPalavra() {
+    setLetrasHabilitadas([])
     const indice = Math.floor(Math.random() * palavras.length);
-    setPalavraOculta(palavras[indice]);
-    setLetrasHabilitadas(alfabeto);
-    setTentativas(0);
-    setHabilitar(true);
-    setJogoComecou(true);
+  setPalavraOculta(palavras[indice]);
   }
-
-  function onLetraClick(letra) {
-    setLetrasHabilitadas((prev) => prev.filter((l) => l !== letra));
-    if (!palavraOculta.includes(letra)) {
-      setTentativas((prev) => prev + 1);
-    }
-  }
-
   function getPalavraMostrada() {
     if (!habilitar) return "";
-
-    let palavra = "";
-    for (let i = 0; i < palavraOculta.length; i++) {
-      if (!letrasHabilitadas.includes(palavraOculta[i])) {
-        palavra += palavraOculta[i];
-      } else {
-        palavra += "_";
-      }
-    }
-    return palavra;
+    return palavraOculta
+      .split("")
+      .map((letra) => (letrasHabilitadas.includes(letra) ? "_" : letra))
+      .join("");
   }
+  
 
+ 
   return (
     <>
       <Jogo
-        habilitar={habilitar}
-        tentativas={tentativas}
-        getPalavraMostrada={getPalavraMostrada}
+       // habilitar={habilitar}
+       tentativas={tentativas}
+        //getPalavraMostrada={getPalavraMostrada}
         escolherPalavra={escolherPalavra}
       />
       <Letras
-        letrasHabilitadas={letrasHabilitadas}
-        onLetraClick={onLetraClick}
-        jogoComecou={jogoComecou}
+       letrasHabilitadas={letrasHabilitadas}
+       // onLetraClick={onLetraClick}
+      //  jogoComecou={jogoComecou}
       />
     </>
   );
